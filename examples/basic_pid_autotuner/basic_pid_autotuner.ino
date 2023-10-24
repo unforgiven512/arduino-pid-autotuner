@@ -1,34 +1,3 @@
-# arduino-pid-autotuner #
-
-Automated PID tuning using Ziegler-Nichols/relay method.
-
-Originally written for Arduino and compatible boards, but does not rely on the Arduino standard library.
-
-
-## Disclaimer ##
-
-**NOTE:** _Issues have been disabled on this repository due to too many off-topic questions about PID control in general
-or how to use this code._
-
-This project is a simple implementation of the algorithm described [here][1] and **is not guaranteed to work in every
-use case.**
-
-_**If you don't know what this code is intended to do, you probably don't need to use it.**_
-
-
-## How does it work? ##
-
-The `pidautotuner.h` and `pidautotuner.cpp` files are fully commented to explain how the algorithm works.
-
-
-## What PID controller does this work with? ##
-
-This algorithm should work with any implementation of PID control _(if it is properly configured)_.
-
-
-## Example code (Arduino) ##
-
-```c
 #include <pidautotuner.h>
 
 void setup() {
@@ -94,8 +63,4 @@ void setup() {
 void loop() {
     // (do stuff...)
 }
-```
 
-
-
-[1]:    <https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method>
