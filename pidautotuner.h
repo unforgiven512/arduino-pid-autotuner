@@ -61,7 +61,7 @@ public:
 	// See README for more details - https://github.com/jackw01/arduino-pid-autotuner/blob/master/README.md
 	float tunePID(float input, unsigned long us);
 
-	// Get results of most recent tuning
+	// Get resulting PID constants after most recent tuning
 	float getKp();
 	float getKi();
 	float getKd();
@@ -100,4 +100,6 @@ private:
 	float kd;
 };
 
-#endif
+
+#endif	/* !PIDAUTOTUNER_H_ */
+

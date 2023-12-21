@@ -4,6 +4,8 @@
 
 #include "pidautotuner.h"
 
+
+
 PIDAutotuner::PIDAutotuner() {
 }
 
@@ -51,7 +53,9 @@ void PIDAutotuner::startTuningLoop(unsigned long us) {
 	microseconds = tHigh = tLow = 0;	// More time variables
 	max = -1000000000000;				// Max input
 	min = 1000000000000;				// Min input
-	pAverage = iAverage = dAverage = 0;
+	pAverage = 0;
+	iAverage = 0;
+	dAverage = 0;
 }
 
 // Run one cycle of the loop
@@ -74,9 +78,13 @@ float PIDAutotuner::tunePID(float input, unsigned long us) {
 	//      Ziegler-Nichols method
 
 	// Calculate time delta
-//	long prevMicroseconds = microseconds;
+#if 0
+	long prevMicroseconds = microseconds;
+#endif
 	microseconds = us;
-//	float deltaT = microseconds - prevMicroseconds;
+#if 0
+	float deltaT = microseconds - prevMicroseconds;
+#endif
 
 	// Calculate max and min
 	max = (max > input) ? max : input;
@@ -126,7 +134,9 @@ float PIDAutotuner::tunePID(float input, unsigned long us) {
 		// Constants
 		// https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method
 
-		float kpConstant, tiConstant, tdConstant;
+		float kpConstant;
+		float tiConstant;
+		float tdConstant;
 		if (znMode == ZNModeBasicPID) {
 			kpConstant = 0.6;
 			tiConstant = 0.5;
@@ -174,15 +184,15 @@ float PIDAutotuner::tunePID(float input, unsigned long us) {
 
 // Get PID constants after tuning
 float PIDAutotuner::getKp() {
-	return kp;
+	return (kp);
 }
 
 float PIDAutotuner::getKi() {
-	return ki;
+	return (ki);
 }
 
 float PIDAutotuner::getKd() {
-	return kd;
+	return (kd);
 }
 
 void getPIDParams(pid_autotune_results_t *pidResults) {
